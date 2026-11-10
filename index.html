@@ -155,8 +155,8 @@ var lines=cart.map(function(i){return i.q+' x '+i.n+' ('+money(i.p*i.q)+')'}).jo
 btn.disabled=true;btn.textContent='Sending...';
 fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:KEY,subject:'New AMALIA order from '+f.name.value,from_name:'AMALIA website',name:f.name.value,phone:f.phone.value,email:f.email.value,address:f.addr.value,products:lines,total:total})})
 .then(function(r){return r.json()})
-.then(function(d){if(!d.success)throw new Error('failed');cart=[];render();f.innerHTML='<div class="empty"><h2>Thank you</h2><p>Your order is received. We will call you to confirm delivery.</p></div>'})
-.catch(function(){btn.disabled=false;btn.textContent='Place order';alert('Sorry, your order could not be sent. Please try again.')});
+.then(function(d){if(!d.success)throw new Error(d.message||'failed');cart=[];render();f.innerHTML='<div class="empty"><h2>Thank you</h2><p>Your order is received. We will call you to confirm delivery.</p></div>'})
+.catch(function(err){btn.disabled=false;btn.textContent='Place order';alert('Order failed: '+err.message)});
 };
 document.addEventListener('keydown',function(e){if(e.key==='Escape')show(false)});
 render();
