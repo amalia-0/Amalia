@@ -154,7 +154,7 @@ $('#open').onclick=function(){show(true)};$('#close').onclick=$('#ov').onclick=f
 $('#go').onclick=function(){$('#view').style.display='none';$('#co').style.display='block'};
 $('#back').onclick=function(){$('#co').style.display='none';$('#view').style.display='flex'};
 $('#co').onsubmit=function(e){e.preventDefault();
-var f=this,btn=f.querySelector('button[type=submit]'),KEY='PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE';
+var f=this,btn=f.querySelector('button[type=submit]'),KEY='b3e4586f-bf51-4413-a8dc-d6b9ff9eff62';
 var lines=cart.map(function(i){return i.q+' x '+i.n+' ('+money(i.p*i.q)+')'}).join('\n'),total=$('#sub').textContent;
 btn.disabled=true;btn.textContent='Sending...';
 fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:KEY,subject:'New AMALIA order from '+f.name.value,from_name:'AMALIA website',name:f.name.value,phone:f.phone.value,email:f.email.value,address:f.addr.value,products:lines,total:total})})
