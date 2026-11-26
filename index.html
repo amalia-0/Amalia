@@ -305,7 +305,7 @@ var cat=0,term='',curP=0,selOpt=0;
 function newest(fn){for(var k=P.length-1;k>=0;k--)fn(P[k],k)}
 function price(p){return money(p[1])+(p[7]?' <s class="was">'+money(p[7])+'</s>':'')}
 function badge(p){return p[7]?'<em class="off">-'+Math.round((1-p[1]/p[7])*100)+'%</em>':''}
-var FITP=['Mini Porcelain Pot','Portal Digital Scale'];
+var FITP=['Mini Porcelain Pot','Portal Digital Scale','Apple Mug'];
 function card(p,i){var out=p[4]<1,vis=p[5]?'<div class="sw ph'+(FITP.indexOf(p[0])>=0?' fit':'')+'"><img src="'+p[5][0]+'" alt="'+p[0]+'">'+badge(p)+'</div>':'<div class="sw" style="background:'+p[3]+'"><i></i></div>';
 return '<div class="prod" data-p="'+i+'">'+vis+'<b>'+p[0]+' <span class="price">'+price(p)+'</span></b><small>'+CATS[p[2]]+' \u00b7 '+(out?'Out of stock':p[4]<=5?'Only '+p[4]+' left':'In stock')+'</small><button class="add" '+(p[8]&&!out?'data-open':'data-i')+'="'+i+'"'+(out?' disabled':'')+'>'+(out?'Out of stock':p[8]?'Choose '+(p[9]||'option'):'Add to bag')+'</button></div>'}
 function draw(){var h='',n=0;newest(function(p,i){if(cat&&p[2]!==cat)return;if(term&&(p[0]+' '+CATS[p[2]]).toLowerCase().indexOf(term)<0)return;n++;h+=card(p,i)});
